@@ -1,18 +1,74 @@
 <ul class="nav flex-column">
-    <li class="nav-item"><a class="nav-link active" href="{{ url_for('student.dashboard') }}"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ url_for('student.notices') }}"><i class="bi bi-megaphone"></i> Notice</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ url_for('student.results') }}"><i class="bi bi-bar-chart"></i> Results</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ url_for('student.class_routine') }}"><i class="bi bi-calendar-event"></i> Class Routine</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ url_for('student.exam_routine') }}"><i class="bi bi-calendar-check"></i> Exam Routine</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ url_for('student.academic_calendar') }}"><i class="bi bi-calendar3"></i> Academic Calendar</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ url_for('student.study_materials') }}"><i class="bi bi-book"></i> Study Materials</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ url_for('student.teachers') }}"><i class="bi bi-people"></i> Teachers</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ url_for('student.gallery') }}"><i class="bi bi-images"></i> Gallery</a></li>
+    <li class="nav-item">
+        <a class="nav-link {{ 'active' if request.endpoint == 'student.dashboard' else '' }}" 
+           href="{{ url_for('student.dashboard') }}">
+            <i class="bi bi-speedometer2"></i> Dashboard
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ 'active' if request.endpoint == 'student.notices' else '' }}" 
+           href="{{ url_for('student.notices') }}">
+            <i class="bi bi-megaphone"></i> Notice
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ 'active' if request.endpoint == 'student.results' else '' }}" 
+           href="{{ url_for('student.results') }}">
+            <i class="bi bi-bar-chart"></i> Results
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ 'active' if request.endpoint == 'student.class_routine' else '' }}" 
+           href="{{ url_for('student.class_routine') }}">
+            <i class="bi bi-calendar-event"></i> Class Routine
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ 'active' if request.endpoint == 'student.exam_routine' else '' }}" 
+           href="{{ url_for('student.exam_routine') }}">
+            <i class="bi bi-calendar-check"></i> Exam Routine
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ 'active' if request.endpoint == 'student.academic_calendar' else '' }}" 
+           href="{{ url_for('student.academic_calendar') }}">
+            <i class="bi bi-calendar3"></i> Academic Calendar
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ 'active' if request.endpoint == 'student.study_materials' else '' }}" 
+           href="{{ url_for('student.study_materials') }}">
+            <i class="bi bi-book"></i> Study Materials
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ 'active' if request.endpoint == 'student.teachers' else '' }}" 
+           href="{{ url_for('student.teachers') }}">
+            <i class="bi bi-people"></i> Teachers
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ 'active' if request.endpoint == 'student.gallery' else '' }}" 
+           href="{{ url_for('student.gallery') }}">
+            <i class="bi bi-images"></i> Gallery
+        </a>
+    </li>
 
-    <!-- Alumni Link -->
-    <li class="nav-item"><a class="nav-link" href="{{ url_for('student.alumni_redirect') }}" target="_blank"><i class="bi bi-award"></i> Alumni</a></li>
+    <!-- Alumni Link (opens in new tab) -->
+    <li class="nav-item">
+        <a class="nav-link" 
+           href="https://www.facebook.com/share/g/1ASuPFnqLW/" 
+           target="_blank">
+            <i class="bi bi-mortarboard"></i> Alumni
+        </a>
+    </li>
 
-    <li class="nav-item"><a class="nav-link" href="{{ url_for('student.profile') }}"><i class="bi bi-person"></i> Profile</a></li>
+    <li class="nav-item">
+        <a class="nav-link {{ 'active' if request.endpoint == 'student.profile' else '' }}" 
+           href="{{ url_for('student.profile') }}">
+            <i class="bi bi-person"></i> Profile
+        </a>
+    </li>
 
     <!-- Logout with red color and separator -->
     <li class="nav-item mt-3 border-top pt-2">
