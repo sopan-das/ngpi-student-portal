@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block sidebar %}{% include 'includes/student_sidebar.html' %}{% endblock %}
+{% block sidebar_desktop %}{% include 'includes/student_sidebar.html' %}{% endblock %}
+
+{% block content %}
+<div class="p-4">
+    <h2>Teachers</h2>
+    <div class="row">
+        {% for teacher in teachers %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="{{ url_for('static', filename='uploads/teachers/'+teacher.photo) }}" class="card-img-top" style="height:200px; object-fit:cover;">
+                <div class="card-body">
+                    <h5>{{ teacher.name }}</h5>
+                    <p>{{ teacher.designation }}<br>{{ teacher.department }}</p>
+                    <p><i class="bi bi-envelope"></i> {{ teacher.email }}<br><i class="bi bi-phone"></i> {{ teacher.phone }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

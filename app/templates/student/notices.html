@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block sidebar %}{% include 'includes/student_sidebar.html' %}{% endblock %}
+{% block sidebar_desktop %}{% include 'includes/student_sidebar.html' %}{% endblock %}
+
+{% block content %}
+<div class="p-4">
+    <h2>Notices</h2>
+    <div class="list-group">
+        {% for notice in notices %}
+        <div class="list-group-item">
+            <h5>{{ notice.title }}</h5>
+            <p>{{ notice.description }}</p>
+            <small class="text-muted">{{ notice.created_at.strftime('%Y-%m-%d %H:%M') }}</small>
+            <a href="{{ url_for('student.download_file', folder='notice', filename=notice.file_path) }}" class="btn btn-sm btn-primary float-end">Download</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

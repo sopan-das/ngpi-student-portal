@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block sidebar %}{% include 'includes/student_sidebar.html' %}{% endblock %}
+{% block sidebar_desktop %}{% include 'includes/student_sidebar.html' %}{% endblock %}
+
+{% block content %}
+<div class="p-4">
+    <h2>Results</h2>
+    <div class="list-group">
+        {% for result in results %}
+        <div class="list-group-item">
+            <h5>{{ result.title }}</h5>
+            <p>Semester: {{ result.semester }}</p>
+            <small class="text-muted">{{ result.created_at.strftime('%Y-%m-%d') }}</small>
+            <a href="{{ url_for('student.download_file', folder='results', filename=result.file_path) }}" class="btn btn-sm btn-primary float-end">Download</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

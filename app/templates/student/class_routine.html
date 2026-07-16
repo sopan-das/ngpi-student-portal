@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block sidebar %}{% include 'includes/student_sidebar.html' %}{% endblock %}
+{% block sidebar_desktop %}{% include 'includes/student_sidebar.html' %}{% endblock %}
+
+{% block content %}
+<div class="p-4">
+    <h2>Class Routine</h2>
+    <div class="list-group">
+        {% for routine in routines %}
+        <div class="list-group-item">
+            <h5>{{ routine.department }} - {{ routine.semester }}</h5>
+            <small class="text-muted">{{ routine.created_at.strftime('%Y-%m-%d') }}</small>
+            <a href="{{ url_for('student.download_file', folder='class_routine', filename=routine.file_path) }}" class="btn btn-sm btn-primary float-end">Download</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

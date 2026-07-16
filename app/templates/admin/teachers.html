@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block sidebar %}{% include 'includes/admin_sidebar.html' %}{% endblock %}
+{% block sidebar_desktop %}{% include 'includes/admin_sidebar.html' %}{% endblock %}
+
+{% block content %}
+<div class="p-4">
+    <h2>Teachers</h2>
+    <button class="btn btn-primary mb-3" data-bs-toggle="collapse" data-bs-target="#addTeacherForm">Add Teacher</button>
+    <div class="collapse mb-3" id="addTeacherForm">
+        <div class="card card-body">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-4"><input type="text" class="form-control" name="name" placeholder="Name" required></div>
+                    <div class="col-md-4"><input type="text" class="form-control" name="designation" placeholder="Designation" required></div>
+                    <div class="col-md-4"><input type="text" class="form-control" name="department" placeholder="Department" required></div>
+                    <div class="col-md-4 mt-2"><input type="email" class="form-control" name="email" placeholder="Email" required></div>
+                    <div class="col-md-4 mt-2"><input type="text" class="form-control" name="phone" placeholder="Phone" required></div>
+                    <div class="col-md-4 mt-2"><input type="file" class="form-control" name="photo" accept="image/*"></div>
+                    <div class="col-md-12 mt-2"><button type="submit" class="btn btn-success">Add Teacher</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead><tr><th>Photo</th><th>Name</th><th>Designation</th><th>Department</th><th>Email</th><th>Phone</th><th>Actions</th></tr></thead>
+        <tbody>
+            {% for teacher in teachers %}
+            <tr>
+                <td><img src="{{ url_for('static', filename='uploads/teachers/'+teacher.photo) }}" width="50" height="50" class="rounded-circle"></td>
+                <td>{{ teacher.name }}</td>
+                <td>{{ teacher.designation }}</td>
+                <td>{{ teacher.department }}</td>
+                <td>{{ teacher.email }}</td>
+                <td>{{ teacher.phone }}</td>
+                <td>
+                    <button class="btn btn-sm btn-warning" data-bs-toggle="collapse" data-bs-target="#editTeacher{{ teacher.id }}">Edit</button>
+                    <a href="{{ url_for('admin.delete_teacher', id=teacher.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">Delete</a>
+                    <div class="collapse mt-2" id="editTeacher{{ teacher.id }}">
+                        <form method="POST" action="{{ url_for('admin.edit_teacher', id=teacher.id) }}" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-6"><input type="text" class="form-control" name="name" value="{{ teacher.name }}"></div>
+                                <div class="col-6"><input type="text" class="form-control" name="designation" value="{{ teacher.designation }}"></div>
+                                <div class="col-6"><input type="text" class="form-control" name="department" value="{{ teacher.department }}"></div>
+                                <div class="col-6"><input type="email" class="form-control" name="email" value="{{ teacher.email }}"></div>
+                                <div class="col-6"><input type="text" class="form-control" name="phone" value="{{ teacher.phone }}"></div>
+                                <div class="col-6"><input type="file" class="form-control" name="photo"></div>
+                                <div class="col-12"><button type="submit" class="btn btn-sm btn-success mt-2">Update</button></div>
+                            </div>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

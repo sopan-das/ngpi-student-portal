@@ -1,0 +1,37 @@
+<nav class="navbar navbar-light bg-white border-bottom">
+    <div class="container-fluid">
+        <!-- Hamburger -->
+        <button class="btn btn-outline-secondary d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas">
+            <i class="bi bi-list"></i>
+        </button>
+
+        <!-- Institute Name -->
+        <span class="navbar-text fw-bold text-primary">
+            <i class="bi bi-building"></i> Narsingdi Govt. Polytechnic Institute
+        </span>
+
+        <!-- Notification Bell & User Dropdown -->
+        <div class="d-flex align-items-center">
+            <a href="{{ url_for('student.notices') if current_user.is_authenticated and current_user.__class__.__name__ == 'Student' else url_for('admin.pending_students') if current_user.is_authenticated and current_user.__class__.__name__ == 'Admin' else '#' }}" 
+               class="btn btn-light position-relative me-2">
+                <i class="bi bi-bell"></i>
+                {% set counts = notification_counts() %}
+                {% if current_user.is_authenticated and ((current_user.__class__.__name__ == 'Student' and counts.new_notices > 0) or (current_user.__class__.__name__ == 'Admin' and counts.pending_students > 0)) %}
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {{ counts.new_notices if current_user.__class__.__name__ == 'Student' else counts.pending_students }}
+                    </span>
+                {% endif %}
+            </a>
+
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <i class="bi bi-person-circle"></i> 
+                    {{ current_user.full_name if current_user.full_name else current_user.username }}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

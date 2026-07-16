@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block sidebar %}
+    {% include 'includes/student_sidebar.html' %}
+{% endblock %}
+
+{% block sidebar_desktop %}
+    {% include 'includes/student_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="p-4">
+        <h1 style="color:rgb(17, 112, 255);">NGPI STUDENT DASHBOARD</h1>
+        <h2>Welcome, {{ current_user.full_name }}!</h2>
+        <p class="text-muted">Department: {{ current_user.department }} | Semester: {{ current_user.semester }}</p>
+        <div class="row mt-4">
+            <div class="col-md-3 mb-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="bi bi-megaphone display-4 text-primary"></i>
+                        <h5 class="card-title mt-2">Notices</h5>
+                        <a href="{{ url_for('student.notices') }}" class="btn btn-outline-primary btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="bi bi-bar-chart display-4 text-success"></i>
+                        <h5 class="card-title mt-2">Results</h5>
+                        <a href="{{ url_for('student.results') }}" class="btn btn-outline-success btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="bi bi-calendar-event display-4 text-warning"></i>
+                        <h5 class="card-title mt-2">Class Routine</h5>
+                        <a href="{{ url_for('student.class_routine') }}" class="btn btn-outline-warning btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="bi bi-book display-4 text-info"></i>
+                        <h5 class="card-title mt-2">Study Materials</h5>
+                        <a href="{{ url_for('student.study_materials') }}" class="btn btn-outline-info btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block sidebar %}{% include 'includes/admin_sidebar.html' %}{% endblock %}
+{% block sidebar_desktop %}{% include 'includes/admin_sidebar.html' %}{% endblock %}
+
+{% block content %}
+<div class="p-4">
+    <h2>All Students</h2>
+    
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show">{{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endwith %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Roll</th>
+                <th>Reg</th>
+                <th>Dept</th>
+                <th>Semester</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.full_name }}</td>
+                <td>{{ student.roll_number }}</td>
+                <td>{{ student.registration_number }}</td>
+                <td>{{ student.department }}</td>
+                <td>{{ student.semester }}</td>
+                <td>{{ student.email }}</td>
+                <td><span class="badge bg-{{ 'success' if student.status=='approved' else 'warning' if student.status=='pending' else 'danger' }}">{{ student.status }}</span></td>
+                <td>
+                    <a href="{{ url_for('admin.delete_student', id=student.id) }}" 
+                       class="btn btn-sm btn-danger" 
+                       onclick="return confirm('Are you sure you want to delete this student? This action cannot be undone.');">
+                        <i class="bi bi-trash"></i> Delete
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

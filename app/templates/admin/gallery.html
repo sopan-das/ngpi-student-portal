@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block sidebar %}{% include 'includes/admin_sidebar.html' %}{% endblock %}
+{% block sidebar_desktop %}{% include 'includes/admin_sidebar.html' %}{% endblock %}
+
+{% block content %}
+<div class="p-4">
+    <h2>Gallery</h2>
+    <button class="btn btn-primary mb-3" data-bs-toggle="collapse" data-bs-target="#addForm">Add Image</button>
+    <div class="collapse mb-3" id="addForm">
+        <div class="card card-body">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-6"><input type="text" class="form-control" name="caption" placeholder="Caption"></div>
+                    <div class="col-md-6"><input type="file" class="form-control" name="image" accept="image/*" required></div>
+                    <div class="col-md-12 mt-2"><button type="submit" class="btn btn-success">Upload</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for image in images %}
+        <div class="col-md-3 mb-3">
+            <div class="card">
+                <img src="{{ url_for('static', filename='uploads/gallery/'+image.image_path) }}" class="card-img-top" style="height:200px; object-fit:cover;">
+                <div class="card-body">
+                    <p class="card-text">{{ image.caption }}</p>
+                    <a href="{{ url_for('admin.delete_gallery', id=image.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

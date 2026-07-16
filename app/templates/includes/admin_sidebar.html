@@ -1,0 +1,23 @@
+<ul class="nav flex-column">
+    <li class="nav-item"><a class="nav-link active" href="{{ url_for('admin.dashboard') }}"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.pending_students') }}"><i class="bi bi-hourglass-split"></i> Pending Students</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.students') }}"><i class="bi bi-people"></i> Students</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.teachers') }}"><i class="bi bi-person-badge"></i> Teachers</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.notices') }}"><i class="bi bi-megaphone"></i> Notice</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.results') }}"><i class="bi bi-bar-chart"></i> Results</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.class_routine') }}"><i class="bi bi-calendar-event"></i> Class Routine</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.exam_routine') }}"><i class="bi bi-calendar-check"></i> Exam Routine</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.academic_calendar') }}"><i class="bi bi-calendar3"></i> Academic Calendar</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.study_materials') }}"><i class="bi bi-book"></i> Study Materials</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.gallery') }}"><i class="bi bi-images"></i> Gallery</a></li>
+
+    <!-- Profile -->
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.profile') }}"><i class="bi bi-person"></i> Profile</a></li>
+
+    <!-- Logout with red color and separator -->
+    <li class="nav-item mt-3 border-top pt-2">
+        <a class="nav-link text-danger fw-bold" href="{{ url_for('auth.logout') }}">
+            <i class="bi bi-box-arrow-right"></i> Logout
+        </a>
+    </li>
+</ul>

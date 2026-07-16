@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block sidebar %}
+    {% include 'includes/admin_sidebar.html' %}
+{% endblock %}
+
+{% block sidebar_desktop %}
+    {% include 'includes/admin_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="p-4">
+        <h1 style="color:blue;">NGPI ADMIN DASHBOARD</h1>
+        <h2>Dashboard</h2>
+        <div class="row mt-4">
+            <div class="col-md-4 mb-3">
+                <div class="card text-white bg-primary">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Students</h5>
+                        <p class="card-text display-4">{{ total_students }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card text-white bg-warning">
+                    <div class="card-body">
+                        <h5 class="card-title">Pending Students</h5>
+                        <p class="card-text display-4">{{ pending_students }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card text-white bg-success">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Teachers</h5>
+                        <p class="card-text display-4">{{ total_teachers }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card text-white bg-info">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Notices</h5>
+                        <p class="card-text display-4">{{ total_notices }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Uploaded Files</h5>
+                        <p class="card-text display-4">{{ total_files }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

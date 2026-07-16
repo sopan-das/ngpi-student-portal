@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block sidebar %}{% include 'includes/admin_sidebar.html' %}{% endblock %}
+{% block sidebar_desktop %}{% include 'includes/admin_sidebar.html' %}{% endblock %}
+
+{% block content %}
+<div class="p-4">
+    <h2>Academic Calendar</h2>
+    <button class="btn btn-primary mb-3" data-bs-toggle="collapse" data-bs-target="#addForm">Upload Calendar</button>
+    <div class="collapse mb-3" id="addForm">
+        <div class="card card-body">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-12"><input type="file" class="form-control" name="file" accept=".pdf,.png,.jpg,.jpeg" required></div>
+                    <div class="col-md-12 mt-2"><button type="submit" class="btn btn-success">Upload</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead><tr><th>File</th><th>Date</th><th>Actions</th></tr></thead>
+        <tbody>
+            {% for calendar in calendars %}
+            <tr>
+                <td><a href="{{ url_for('student.download_file', folder='calendar', filename=calendar.file_path) }}" target="_blank">Download</a></td>
+                <td>{{ calendar.created_at.strftime('%Y-%m-%d') }}</td>
+                <td><a href="{{ url_for('admin.delete_academic_calendar', id=calendar.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
