@@ -54,3 +54,19 @@ body {
         font-size: 2.5rem;
     }
 }
+
+/* Teacher Card Hover Effects */
+.hover-shadow {
+    transition: all 0.3s ease;
+}
+.hover-shadow:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12) !important;
+}
+.card {
+    border-radius: 16px;
+    overflow: hidden;
+}
+.card-img-top-wrapper {
+    border-bottom: 1px solid #eee;
+}
